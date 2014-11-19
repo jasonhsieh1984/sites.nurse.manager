@@ -1,0 +1,12 @@
+D:\01_develop\Sites.Nurses.Manage_windows\Sites.Nurses.Manage_windows\bin\x86\Debug\Sites.Nurses.Manage_windows.exe
+D:\01_develop\Sites.Nurses.Manage_windows\Sites.Nurses.Manage_windows\bin\x86\Debug\Sites.Nurses.Manage_windows.pdb
+D:\01_develop\Sites.Nurses.Manage_windows\Sites.Nurses.Manage_windows\bin\x86\Debug\SQLite.Designer.dll
+D:\01_develop\Sites.Nurses.Manage_windows\Sites.Nurses.Manage_windows\bin\x86\Debug\EntityFramework.dll
+D:\01_develop\Sites.Nurses.Manage_windows\Sites.Nurses.Manage_windows\bin\x86\Debug\SQLite.Designer.pdb
+D:\01_develop\Sites.Nurses.Manage_windows\Sites.Nurses.Manage_windows\obj\x86\Debug\Sites.Nurses.Manage_windows.frmMain.resources
+D:\01_develop\Sites.Nurses.Manage_windows\Sites.Nurses.Manage_windows\obj\x86\Debug\Sites.Nurses.Manage_windows.frmNurseManage.resources
+D:\01_develop\Sites.Nurses.Manage_windows\Sites.Nurses.Manage_windows\obj\x86\Debug\Sites.Nurses.Manage_windows.frmSitesManage.resources
+D:\01_develop\Sites.Nurses.Manage_windows\Sites.Nurses.Manage_windows\obj\x86\Debug\Sites.Nurses.Manage_windows.Properties.Resources.resources
+D:\01_develop\Sites.Nurses.Manage_windows\Sites.Nurses.Manage_windows\obj\x86\Debug\Sites.Nurses.Manage_windows.csproj.GenerateResource.Cache
+D:\01_develop\Sites.Nurses.Manage_windows\Sites.Nurses.Manage_windows\obj\x86\Debug\Sites.Nurses.Manage_windows.exe
+D:\01_develop\Sites.Nurses.Manage_windows\Sites.Nurses.Manage_windows\obj\x86\Debug\Sites.Nurses.Manage_windows.pdb

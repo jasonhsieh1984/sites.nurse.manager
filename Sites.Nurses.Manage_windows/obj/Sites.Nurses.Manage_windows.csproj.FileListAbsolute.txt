@@ -1,0 +1,10 @@
+D:\01_Develop\Sites.Nurses.Manage_windows\Sites.Nurses.Manage_windows\bin\Debug\Sites.Nurses.Manage_windows.exe
+D:\01_Develop\Sites.Nurses.Manage_windows\Sites.Nurses.Manage_windows\bin\Debug\Sites.Nurses.Manage_windows.pdb
+D:\01_Develop\Sites.Nurses.Manage_windows\Sites.Nurses.Manage_windows\obj\Debug\ResolveAssemblyReference.cache
+D:\01_Develop\Sites.Nurses.Manage_windows\Sites.Nurses.Manage_windows\obj\Debug\Sites.Nurses.Manage_windows.frmMain.resources
+D:\01_Develop\Sites.Nurses.Manage_windows\Sites.Nurses.Manage_windows\obj\Debug\Sites.Nurses.Manage_windows.Properties.Resources.resources
+D:\01_Develop\Sites.Nurses.Manage_windows\Sites.Nurses.Manage_windows\obj\Debug\Sites.Nurses.Manage_windows.csproj.GenerateResource.Cache
+D:\01_Develop\Sites.Nurses.Manage_windows\Sites.Nurses.Manage_windows\obj\Debug\Sites.Nurses.Manage_windows.exe
+D:\01_Develop\Sites.Nurses.Manage_windows\Sites.Nurses.Manage_windows\obj\Debug\Sites.Nurses.Manage_windows.pdb
+D:\01_Develop\Sites.Nurses.Manage_windows\Sites.Nurses.Manage_windows\obj\Debug\Sites.Nurses.Manage_windows.frmNurseManage.resources
+D:\01_Develop\Sites.Nurses.Manage_windows\Sites.Nurses.Manage_windows\obj\Debug\Sites.Nurses.Manage_windows.frmSitesManage.resources
