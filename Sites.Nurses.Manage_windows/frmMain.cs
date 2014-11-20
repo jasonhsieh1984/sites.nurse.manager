@@ -13,8 +13,6 @@ namespace Sites.Nurses.Manage_windows
 {
     public partial class frmMain : Form
     {
-        public clsSQLFunction sqlFunc = new clsSQLFunction();
-
         public frmMain()
         {
             InitializeComponent();
@@ -30,10 +28,8 @@ namespace Sites.Nurses.Manage_windows
         /// ªì©l¤Æ
         /// </summary>
         private void initilize()
-        {
-            sqlFunc.open();
-
-            sqlFunc.close();
+        {         
+            Application.DoEvents();
         }
 
         private void btnSite_Click(object sender, EventArgs e)

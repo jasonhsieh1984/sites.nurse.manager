@@ -100,6 +100,12 @@
     <Compile Include="frmSitesManage.Designer.cs">
       <DependentUpon>frmSitesManage.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmSiteUpdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSiteUpdate.Designer.cs">
+      <DependentUpon>frmSiteUpdate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmMain.resx">
@@ -113,6 +119,9 @@
     <EmbeddedResource Include="frmSitesManage.resx">
       <SubType>Designer</SubType>
       <DependentUpon>frmSitesManage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSiteUpdate.resx">
+      <DependentUpon>frmSiteUpdate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
