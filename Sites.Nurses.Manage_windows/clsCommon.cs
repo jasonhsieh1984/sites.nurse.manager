@@ -50,12 +50,12 @@ namespace Sites.Nurses.Manage_windows
     /// </summary>
     /// <param name="ID">ID</param>
     /// <param name="Name">名稱</param>
-    /// <param name="PicturePath">照片路徑</param>
+    /// <param name="Image">照片檔名</param>
     public class clsNurse
     {
         private string strID;
         private string strName;
-        private string strPicPath;
+        private string strImage;
 
         /// <summary>
         /// 編號
@@ -78,10 +78,10 @@ namespace Sites.Nurses.Manage_windows
         /// <summary>
         /// 照片路徑
         /// </summary>
-        public String PicturePath
+        public String Image
         {
-            get { return strPicPath; }  // Getter
-            set { strPicPath = value; } // Setter
+            get { return strImage; }  // Getter
+            set { strImage = value; } // Setter
         }
     }
 
@@ -135,7 +135,7 @@ namespace Sites.Nurses.Manage_windows
                 SQLiteCommand sqlite_cmd = sqlite_conn.CreateCommand();
                 sqlite_cmd = sqlite_conn.CreateCommand();//create command
 
-                sqlite_cmd.CommandText = "INSERT INTO nurse VALUES ('" + data.ID + "','" + data.Name + "','" + data.PicturePath + "');";
+                sqlite_cmd.CommandText = "INSERT INTO nurse VALUES ('" + data.ID + "','" + data.Name + "','" + data.Image + "');";
                 sqlite_cmd.ExecuteNonQuery();//using behind every write cmd
 
                 return 0;
@@ -157,8 +157,8 @@ namespace Sites.Nurses.Manage_windows
                 SQLiteCommand sqlite_cmd = sqlite_conn.CreateCommand();
                 sqlite_cmd = sqlite_conn.CreateCommand();//create command
 
-                sqlite_cmd.CommandText = "INSERT INTO nurse VALUES ('" + data.ID + "','" + data.Name + "','" + data.PicturePath + "');";
-                //sqlite_cmd.ExecuteNonQuery();//using behind every write cmd
+                sqlite_cmd.CommandText = "UPDATE nurse SET name='" + data.Name + "', path='" + data.Image + "' WHERE id='" + data.ID + "';";
+                sqlite_cmd.ExecuteNonQuery();//using behind every write cmd
 
                 return 0;
             }
@@ -206,7 +206,7 @@ namespace Sites.Nurses.Manage_windows
                     clsNurse tmpNurse = new clsNurse();
                     tmpNurse.ID = sqlite_datareader["id"].ToString();
                     tmpNurse.Name = sqlite_datareader["name"].ToString();
-                    tmpNurse.PicturePath = sqlite_datareader["path"].ToString();
+                    tmpNurse.Image = sqlite_datareader["path"].ToString();
                     ls.Add(tmpNurse);
                 }
                 listNurse = ls;
@@ -251,8 +251,8 @@ namespace Sites.Nurses.Manage_windows
                 SQLiteCommand sqlite_cmd = sqlite_conn.CreateCommand();
                 sqlite_cmd = sqlite_conn.CreateCommand();//create command
 
-                sqlite_cmd.CommandText = "INSERT INTO site VALUES ('" + data.ID + "','" + data.Name + "','" + data.Memo + "');";
-                //sqlite_cmd.ExecuteNonQuery();//using behind every write cmd
+                sqlite_cmd.CommandText = "UPDATE site SET name='" + data.Name + "', memo='" + data.Memo + "' WHERE id='" + data.ID + "';";
+                sqlite_cmd.ExecuteNonQuery();//using behind every write cmd
                 return 0;
             }
             catch (Exception ex)

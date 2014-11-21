@@ -13,6 +13,7 @@ namespace Sites.Nurses.Manage_windows
 {
     public partial class frmMain : Form
     {
+        private string imagePath = Application.StartupPath + "\\image\\";
         public frmMain()
         {
             InitializeComponent();
@@ -30,6 +31,8 @@ namespace Sites.Nurses.Manage_windows
         private void initilize()
         {         
             Application.DoEvents();
+            if (!Directory.Exists(imagePath))
+                Directory.CreateDirectory(imagePath);
         }
 
         private void btnSite_Click(object sender, EventArgs e)

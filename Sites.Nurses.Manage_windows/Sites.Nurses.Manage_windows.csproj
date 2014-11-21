@@ -94,6 +94,12 @@
     <Compile Include="frmNurseManage.Designer.cs">
       <DependentUpon>frmNurseManage.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmNurseUpdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmNurseUpdate.Designer.cs">
+      <DependentUpon>frmNurseUpdate.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmSitesManage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -115,6 +121,9 @@
     <EmbeddedResource Include="frmNurseManage.resx">
       <SubType>Designer</SubType>
       <DependentUpon>frmNurseManage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmNurseUpdate.resx">
+      <DependentUpon>frmNurseUpdate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSitesManage.resx">
       <SubType>Designer</SubType>

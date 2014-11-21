@@ -18,6 +18,9 @@ namespace Sites.Nurses.Manage_windows
             InitializeComponent();
         }
 
+        /// <summary>
+        /// 將醫護站資料新增至資料庫
+        /// </summary>
         public int addSite(clsSite data)
         {
             foreach (clsSite tmpSite in lsSite)
@@ -44,6 +47,9 @@ namespace Sites.Nurses.Manage_windows
             return -1;
         }
 
+        /// <summary>
+        /// 將醫護站資料更新至資料庫
+        /// </summary>
         public int updateSite(clsSite data)
         {
             try
