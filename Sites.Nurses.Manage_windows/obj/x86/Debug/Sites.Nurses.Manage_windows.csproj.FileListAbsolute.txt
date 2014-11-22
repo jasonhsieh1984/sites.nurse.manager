@@ -25,3 +25,4 @@ D:\01_develop\sites.nurse.manager\Sites.Nurses.Manage_windows\obj\x86\Debug\Site
 D:\01_develop\sites.nurse.manager\Sites.Nurses.Manage_windows\obj\x86\Debug\Sites.Nurses.Manage_windows.csproj.GenerateResource.Cache
 D:\01_develop\sites.nurse.manager\Sites.Nurses.Manage_windows\obj\x86\Debug\Sites.Nurses.Manage_windows.frmSiteUpdate.resources
 D:\01_develop\sites.nurse.manager\Sites.Nurses.Manage_windows\obj\x86\Debug\Sites.Nurses.Manage_windows.frmNurseUpdate.resources
+D:\01_develop\sites.nurse.manager\Sites.Nurses.Manage_windows\obj\x86\Debug\Sites.Nurses.Manage_windows.frmExport.resources

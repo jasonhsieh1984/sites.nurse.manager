@@ -86,6 +86,35 @@ namespace Sites.Nurses.Manage_windows
     }
 
     /// <summary>
+    /// 分派資料
+    /// </summary>
+    /// <param name="NurseID">護士編號</param>
+    /// <param name="SiteID">護理站編號</param>
+    public class clsSchedule
+    {
+        private string strNurseID;
+        private string strSiteID;
+
+        /// <summary>
+        /// 護士編號
+        /// </summary>
+        public String NurseID
+        {
+            get { return strNurseID; }  // Getter
+            set { strNurseID = value; } // Setter
+        }
+
+        /// <summary>
+        /// 護理站編號
+        /// </summary>
+        public String SiteID
+        {
+            get { return strSiteID; }  // Getter
+            set { strSiteID = value; } // Setter
+        }        
+    }
+
+    /// <summary>
     /// SQL功能
     /// </summary>
     public class clsSQLFunction
@@ -102,8 +131,8 @@ namespace Sites.Nurses.Manage_windows
                 sqlite_conn.Open();
                 return 0;
             }
-            catch (Exception ex)
-            {
+            catch
+            {              
                 return -1;
             }
         }
@@ -118,7 +147,7 @@ namespace Sites.Nurses.Manage_windows
                 sqlite_conn.Close();
                 return 0;
             }
-            catch (Exception ex)
+            catch
             {
                 return -1;
             }
@@ -140,7 +169,7 @@ namespace Sites.Nurses.Manage_windows
 
                 return 0;
             }
-            catch (Exception ex)
+            catch
             {
                 return -1;
             }
@@ -162,7 +191,7 @@ namespace Sites.Nurses.Manage_windows
 
                 return 0;
             }
-            catch (Exception ex)
+            catch
             {
                 return -1;
             }
@@ -183,38 +212,8 @@ namespace Sites.Nurses.Manage_windows
                 sqlite_cmd.ExecuteNonQuery();
                 return 0;
             }
-            catch (Exception ex)
+            catch
             {
-                return -1;
-            }
-        }
-
-        /// <summary>
-        ///取得護士列表
-        /// </summary>
-        /// <param name="listNurse">listNurse</param>
-        public int getNurseList(out List<clsNurse> listNurse)
-        {
-            List<clsNurse> ls = new List<clsNurse>();
-            try
-            {
-                SQLiteCommand sqlite_cmd = sqlite_conn.CreateCommand();
-                sqlite_cmd.CommandText = "SELECT * FROM nurse;";
-                SQLiteDataReader sqlite_datareader = sqlite_cmd.ExecuteReader();
-                while (sqlite_datareader.Read()) //read data
-                {
-                    clsNurse tmpNurse = new clsNurse();
-                    tmpNurse.ID = sqlite_datareader["id"].ToString();
-                    tmpNurse.Name = sqlite_datareader["name"].ToString();
-                    tmpNurse.Image = sqlite_datareader["path"].ToString();
-                    ls.Add(tmpNurse);
-                }
-                listNurse = ls;
-                return 0;
-            }
-            catch (Exception ex)
-            {
-                listNurse = ls;
                 return -1;
             }
         }
@@ -234,7 +233,7 @@ namespace Sites.Nurses.Manage_windows
                 sqlite_cmd.ExecuteNonQuery();//using behind every write cmd
                 return 0;
             }
-            catch (Exception ex)
+            catch
             {
                 return -1;
             }
@@ -255,7 +254,7 @@ namespace Sites.Nurses.Manage_windows
                 sqlite_cmd.ExecuteNonQuery();//using behind every write cmd
                 return 0;
             }
-            catch (Exception ex)
+            catch
             {
                 return -1;
             }
@@ -276,23 +275,171 @@ namespace Sites.Nurses.Manage_windows
                 sqlite_cmd.ExecuteNonQuery();
                 return 0;
             }
-            catch (Exception ex)
+            catch
             {
                 return -1;
             }
         }
 
-       /// <summary>
-        ///取得護理站列表
+        /// <summary>
+        /// 新增一筆分派資料
         /// </summary>
+        /// <param name="data">分派資料</param>
+        public int addSchedule(clsSchedule data)
+        {
+            try
+            {
+                SQLiteCommand sqlite_cmd = sqlite_conn.CreateCommand();
+                sqlite_cmd = sqlite_conn.CreateCommand();//create command
+
+                sqlite_cmd.CommandText = "INSERT INTO schedule VALUES ('" + data.NurseID + "','" + data.SiteID + "');";
+                sqlite_cmd.ExecuteNonQuery();//using behind every write cmd
+                return 0;
+            }
+            catch
+            {
+                return -1;
+            }
+        }
+
+        /// <summary>
+        /// 刪除一筆分派資料
+        /// </summary>
+        /// <param name="data">分派資料</param>
+        public virtual int deleteSchedule(clsSchedule data)
+        {
+            try
+            {
+                SQLiteCommand sqlite_cmd = sqlite_conn.CreateCommand();
+                sqlite_cmd = sqlite_conn.CreateCommand();//create command
+                sqlite_cmd.CommandText = "DELETE FROM schedule WHERE nurse_id='" + data.NurseID + "' AND site_id='" + data.SiteID + "';";
+                sqlite_cmd.ExecuteNonQuery();
+                return 0;
+            }
+            catch
+            {
+                return -1;
+            }
+        }
+
+        /// <summary>
+        /// 刪除所有此站點的分派資料
+        /// </summary>
+        /// <param name="data">站點資料</param>
+        public virtual int deleteSchedule(clsSite data)
+        {
+            try
+            {
+                SQLiteCommand sqlite_cmd = sqlite_conn.CreateCommand();
+                sqlite_cmd = sqlite_conn.CreateCommand();//create command
+                sqlite_cmd.CommandText = "DELETE FROM schedule WHERE site_id='" + data.ID + "';";
+                sqlite_cmd.ExecuteNonQuery();
+                return 0;
+            }
+            catch
+            {
+                return -1;
+            }
+        }
+
+        /// <summary>
+        /// 刪除所有此護士的分派資料
+        /// </summary>
+        /// <param name="data">護士資料</param>
+        public virtual int deleteSchedule(clsNurse data)
+        {
+            try
+            {
+                SQLiteCommand sqlite_cmd = sqlite_conn.CreateCommand();
+                sqlite_cmd = sqlite_conn.CreateCommand();//create command
+                sqlite_cmd.CommandText = "DELETE FROM schedule WHERE nurse_id='" + data.ID + "';";
+                sqlite_cmd.ExecuteNonQuery();
+                return 0;
+            }
+            catch
+            {
+                return -1;
+            }
+        }
+
+        /// <summary>
+        ///依護士編號取得分派列表
+        /// </summary>
+        /// <param name="nurseID">nurseID</param>
+        /// <param name="listSchedule">listSchedule</param>
+        public int getSscheduleListByNurse(string nurseID,out List<clsSchedule> listSchedule)
+        {
+            List<clsSchedule> ls = new List<clsSchedule>();
+            try
+            {
+                SQLiteCommand sqlite_cmd = sqlite_conn.CreateCommand();
+                sqlite_cmd.CommandText = "SELECT * FROM schedule WHERE nurse_id='" + nurseID + "' ORDER BY nurse_id, site_id ASC;";
+                SQLiteDataReader sqlite_datareader = sqlite_cmd.ExecuteReader();
+                while (sqlite_datareader.Read()) //read data
+                {
+                    clsSchedule tmpSchedule = new clsSchedule();
+                    tmpSchedule.NurseID = sqlite_datareader["nurse_id"].ToString();
+                    tmpSchedule.SiteID = sqlite_datareader["site_id"].ToString();
+                    ls.Add(tmpSchedule);
+                }
+                listSchedule = ls;
+                return 0;
+            }
+            catch
+            {
+                ls.Clear();
+                listSchedule = ls;
+                return -1;
+            }
+        }
+
+        /// <summary>
+        ///依護理站編號取得分派列表
+        /// </summary>
+        /// <param name="siteID">siteID</param>
+        /// <param name="listSchedule">listSchedule</param>
+        public int getSscheduleListBySite(string siteID, out List<clsSchedule> listSchedule)
+        {
+            List<clsSchedule> ls = new List<clsSchedule>();
+            try
+            {
+                SQLiteCommand sqlite_cmd = sqlite_conn.CreateCommand();
+                sqlite_cmd.CommandText = "SELECT * FROM schedule WHERE site_id='" + siteID + "' ORDER BY site_id, nurse_id ASC;";
+                SQLiteDataReader sqlite_datareader = sqlite_cmd.ExecuteReader();
+                while (sqlite_datareader.Read()) //read data
+                {
+                    clsSchedule tmpSchedule = new clsSchedule();
+                    tmpSchedule.NurseID = sqlite_datareader["nurse_id"].ToString();
+                    tmpSchedule.SiteID = sqlite_datareader["site_id"].ToString();
+                    ls.Add(tmpSchedule);
+                }
+                listSchedule = ls;
+                return 0;
+            }
+            catch
+            {
+                ls.Clear();
+                listSchedule = ls;
+                return -1;
+            }
+        }
+
+        /// <summary>
+        ///搜尋特定護理站
+        /// </summary>
+        /// <param name="column">column</param>
+        /// <param name="searchString">searchString</param>
         /// <param name="listSite">listSite</param>
-        public int getSiteList(out List<clsSite> listSite)
+        public int searchSite(String column,String searchString, out List<clsSite> listSite)
         {
             List<clsSite> ls = new List<clsSite>();
             try
             {
                 SQLiteCommand sqlite_cmd = sqlite_conn.CreateCommand();
-                sqlite_cmd.CommandText = "SELECT * FROM site;";
+                if (column == "" || searchString == "")
+                    sqlite_cmd.CommandText = "SELECT * FROM site ORDER BY id ASC;";
+                else
+                    sqlite_cmd.CommandText = "SELECT * FROM site WHERE " + column + " LIKE '%" + searchString + "%' ORDER BY id ASC;";
                 SQLiteDataReader sqlite_datareader = sqlite_cmd.ExecuteReader();
                 while (sqlite_datareader.Read()) //read data
                 {
@@ -305,9 +452,46 @@ namespace Sites.Nurses.Manage_windows
                 listSite = ls;
                 return 0;
             }
-            catch (Exception ex)
+            catch
             {
+                ls.Clear();
                 listSite = ls;
+                return -1;
+            }
+        }
+
+        /// <summary>
+        ///搜尋特定護士
+        /// </summary>
+        /// <param name="column">column</param>
+        /// <param name="searchString">searchString</param>
+        /// <param name="listSite">listSite</param>
+        public int searchNurse(String column, String searchString, out List<clsNurse> listNurse)
+        {
+            List<clsNurse> ls = new List<clsNurse>();
+            try
+            {
+                SQLiteCommand sqlite_cmd = sqlite_conn.CreateCommand();
+                if (column == "" || searchString == "")
+                    sqlite_cmd.CommandText = "SELECT * FROM nurse ORDER BY id ASC;";
+                else
+                    sqlite_cmd.CommandText = "SELECT * FROM nurse WHERE " + column + " LIKE '%" + searchString + "%' ORDER BY id ASC;";
+                SQLiteDataReader sqlite_datareader = sqlite_cmd.ExecuteReader();
+                while (sqlite_datareader.Read()) //read data
+                {
+                    clsNurse tmpNurse = new clsNurse();
+                    tmpNurse.ID = sqlite_datareader["id"].ToString();
+                    tmpNurse.Name = sqlite_datareader["name"].ToString();
+                    tmpNurse.Image = sqlite_datareader["path"].ToString();
+                    ls.Add(tmpNurse);
+                }
+                listNurse = ls;
+                return 0;
+            }
+            catch
+            {
+                ls.Clear();
+                listNurse = ls;
                 return -1;
             }
         }

@@ -52,6 +52,7 @@
             this.txtNurseID.Size = new System.Drawing.Size(141, 29);
             this.txtNurseID.TabIndex = 31;
             this.txtNurseID.Text = "編號";
+            this.txtNurseID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNurseID_KeyPress);
             // 
             // btnCancel
             // 
@@ -109,7 +110,7 @@
             this.Controls.Add(this.btnConfirm);
             this.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "frmNurseUpdate";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;

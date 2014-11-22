@@ -40,8 +40,16 @@
             this.dgvSiteList = new System.Windows.Forms.DataGridView();
             this.dgvAssigned = new System.Windows.Forms.DataGridView();
             this.btnRemove = new System.Windows.Forms.Button();
-            this.btnJoin = new System.Windows.Forms.Button();
+            this.btnAssign = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtScheduleMemo = new System.Windows.Forms.TextBox();
+            this.txtSiteMemo = new System.Windows.Forms.TextBox();
+            this.btnShowAllNurse = new System.Windows.Forms.Button();
+            this.btnNurseSearch = new System.Windows.Forms.Button();
+            this.txtNurseSearch = new System.Windows.Forms.TextBox();
+            this.cmbNurse = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNurse)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picNurse)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSiteList)).BeginInit();
@@ -54,7 +62,8 @@
             this.dgvNurse.AllowUserToAddRows = false;
             this.dgvNurse.AllowUserToDeleteRows = false;
             this.dgvNurse.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvNurse.Location = new System.Drawing.Point(14, 35);
+            this.dgvNurse.Location = new System.Drawing.Point(14, 45);
+            this.dgvNurse.MultiSelect = false;
             this.dgvNurse.Name = "dgvNurse";
             this.dgvNurse.ReadOnly = true;
             this.dgvNurse.RowTemplate.Height = 24;
@@ -62,6 +71,7 @@
             this.dgvNurse.Size = new System.Drawing.Size(245, 272);
             this.dgvNurse.TabIndex = 0;
             this.dgvNurse.SelectionChanged += new System.EventHandler(this.dgvNurse_SelectionChanged);
+            this.dgvNurse.DoubleClick += new System.EventHandler(this.dgvNurse_DoubleClick);
             // 
             // label1
             // 
@@ -136,64 +146,158 @@
             this.dgvSiteList.AllowUserToAddRows = false;
             this.dgvSiteList.AllowUserToDeleteRows = false;
             this.dgvSiteList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvSiteList.Location = new System.Drawing.Point(325, 46);
+            this.dgvSiteList.Location = new System.Drawing.Point(325, 64);
+            this.dgvSiteList.MultiSelect = false;
             this.dgvSiteList.Name = "dgvSiteList";
             this.dgvSiteList.ReadOnly = true;
             this.dgvSiteList.RowTemplate.Height = 24;
             this.dgvSiteList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvSiteList.Size = new System.Drawing.Size(245, 272);
             this.dgvSiteList.TabIndex = 16;
+            this.dgvSiteList.SelectionChanged += new System.EventHandler(this.dgvSiteList_SelectionChanged);
+            this.dgvSiteList.DoubleClick += new System.EventHandler(this.dgvSiteList_DoubleClick);
             // 
             // dgvAssigned
             // 
             this.dgvAssigned.AllowUserToAddRows = false;
             this.dgvAssigned.AllowUserToDeleteRows = false;
             this.dgvAssigned.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvAssigned.Location = new System.Drawing.Point(6, 46);
+            this.dgvAssigned.Location = new System.Drawing.Point(6, 64);
+            this.dgvAssigned.MultiSelect = false;
             this.dgvAssigned.Name = "dgvAssigned";
             this.dgvAssigned.ReadOnly = true;
             this.dgvAssigned.RowTemplate.Height = 24;
             this.dgvAssigned.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvAssigned.Size = new System.Drawing.Size(245, 272);
             this.dgvAssigned.TabIndex = 15;
+            this.dgvAssigned.SelectionChanged += new System.EventHandler(this.dgvAssigned_SelectionChanged);
+            this.dgvAssigned.DoubleClick += new System.EventHandler(this.dgvAssigned_DoubleClick);
             // 
             // btnRemove
             // 
-            this.btnRemove.Location = new System.Drawing.Point(262, 189);
+            this.btnRemove.BackgroundImage = global::Sites.Nurses.Manage_windows.Properties.Resources.Alarm_Arrow_Right_icon;
+            this.btnRemove.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnRemove.Location = new System.Drawing.Point(264, 223);
             this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(52, 40);
+            this.btnRemove.Size = new System.Drawing.Size(50, 50);
             this.btnRemove.TabIndex = 14;
-            this.btnRemove.Text = "移除";
             this.btnRemove.UseVisualStyleBackColor = true;
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
-            // btnJoin
+            // btnAssign
             // 
-            this.btnJoin.Location = new System.Drawing.Point(262, 120);
-            this.btnJoin.Name = "btnJoin";
-            this.btnJoin.Size = new System.Drawing.Size(52, 40);
-            this.btnJoin.TabIndex = 13;
-            this.btnJoin.Text = "排程";
-            this.btnJoin.UseVisualStyleBackColor = true;
+            this.btnAssign.BackgroundImage = global::Sites.Nurses.Manage_windows.Properties.Resources.Alarm_Arrow_Left_icon;
+            this.btnAssign.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnAssign.Location = new System.Drawing.Point(264, 144);
+            this.btnAssign.Name = "btnAssign";
+            this.btnAssign.Size = new System.Drawing.Size(50, 50);
+            this.btnAssign.TabIndex = 13;
+            this.btnAssign.UseVisualStyleBackColor = true;
+            this.btnAssign.Click += new System.EventHandler(this.btnAssign_Click);
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.txtScheduleMemo);
+            this.groupBox1.Controls.Add(this.txtSiteMemo);
             this.groupBox1.Controls.Add(this.dgvAssigned);
             this.groupBox1.Controls.Add(this.dgvSiteList);
-            this.groupBox1.Controls.Add(this.btnJoin);
+            this.groupBox1.Controls.Add(this.btnAssign);
             this.groupBox1.Controls.Add(this.btnRemove);
             this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.groupBox1.Location = new System.Drawing.Point(280, 122);
+            this.groupBox1.Location = new System.Drawing.Point(280, 54);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(576, 361);
+            this.groupBox1.Size = new System.Drawing.Size(576, 479);
             this.groupBox1.TabIndex = 17;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "負責站點修改";
+            this.groupBox1.Text = "站點分派";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(416, 41);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(73, 20);
+            this.label3.TabIndex = 30;
+            this.label3.Text = "站點總覽";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(98, 41);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(57, 20);
+            this.label2.TabIndex = 29;
+            this.label2.Text = "已分派";
+            // 
+            // txtScheduleMemo
+            // 
+            this.txtScheduleMemo.Location = new System.Drawing.Point(6, 342);
+            this.txtScheduleMemo.Multiline = true;
+            this.txtScheduleMemo.Name = "txtScheduleMemo";
+            this.txtScheduleMemo.ReadOnly = true;
+            this.txtScheduleMemo.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtScheduleMemo.Size = new System.Drawing.Size(245, 132);
+            this.txtScheduleMemo.TabIndex = 28;
+            this.txtScheduleMemo.Text = "備註";
+            // 
+            // txtSiteMemo
+            // 
+            this.txtSiteMemo.Location = new System.Drawing.Point(325, 342);
+            this.txtSiteMemo.Multiline = true;
+            this.txtSiteMemo.Name = "txtSiteMemo";
+            this.txtSiteMemo.ReadOnly = true;
+            this.txtSiteMemo.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtSiteMemo.Size = new System.Drawing.Size(245, 132);
+            this.txtSiteMemo.TabIndex = 27;
+            this.txtSiteMemo.Text = "備註";
+            // 
+            // btnShowAllNurse
+            // 
+            this.btnShowAllNurse.Location = new System.Drawing.Point(322, 8);
+            this.btnShowAllNurse.Name = "btnShowAllNurse";
+            this.btnShowAllNurse.Size = new System.Drawing.Size(82, 29);
+            this.btnShowAllNurse.TabIndex = 35;
+            this.btnShowAllNurse.Text = "所有資料";
+            this.btnShowAllNurse.UseVisualStyleBackColor = true;
+            this.btnShowAllNurse.Click += new System.EventHandler(this.btnShowAllNurse_Click);
+            // 
+            // btnNurseSearch
+            // 
+            this.btnNurseSearch.Location = new System.Drawing.Point(256, 8);
+            this.btnNurseSearch.Name = "btnNurseSearch";
+            this.btnNurseSearch.Size = new System.Drawing.Size(60, 29);
+            this.btnNurseSearch.TabIndex = 34;
+            this.btnNurseSearch.Text = "搜尋";
+            this.btnNurseSearch.UseVisualStyleBackColor = true;
+            this.btnNurseSearch.Click += new System.EventHandler(this.btnNurseSearch_Click);
+            // 
+            // txtNurseSearch
+            // 
+            this.txtNurseSearch.Location = new System.Drawing.Point(160, 9);
+            this.txtNurseSearch.Name = "txtNurseSearch";
+            this.txtNurseSearch.Size = new System.Drawing.Size(90, 29);
+            this.txtNurseSearch.TabIndex = 33;
+            // 
+            // cmbNurse
+            // 
+            this.cmbNurse.FormattingEnabled = true;
+            this.cmbNurse.Location = new System.Drawing.Point(86, 9);
+            this.cmbNurse.Name = "cmbNurse";
+            this.cmbNurse.Size = new System.Drawing.Size(68, 28);
+            this.cmbNurse.TabIndex = 32;
+            this.cmbNurse.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbNurse_KeyPress);
             // 
             // frmNurseManage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(868, 539);
+            this.Controls.Add(this.btnShowAllNurse);
+            this.Controls.Add(this.btnNurseSearch);
+            this.Controls.Add(this.txtNurseSearch);
+            this.Controls.Add(this.cmbNurse);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnUpdate);
@@ -219,6 +323,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvSiteList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAssigned)).EndInit();
             this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -237,7 +342,15 @@
         private System.Windows.Forms.DataGridView dgvSiteList;
         private System.Windows.Forms.DataGridView dgvAssigned;
         private System.Windows.Forms.Button btnRemove;
-        private System.Windows.Forms.Button btnJoin;
+        private System.Windows.Forms.Button btnAssign;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.TextBox txtScheduleMemo;
+        private System.Windows.Forms.TextBox txtSiteMemo;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnShowAllNurse;
+        private System.Windows.Forms.Button btnNurseSearch;
+        private System.Windows.Forms.TextBox txtNurseSearch;
+        private System.Windows.Forms.ComboBox cmbNurse;
     }
 }

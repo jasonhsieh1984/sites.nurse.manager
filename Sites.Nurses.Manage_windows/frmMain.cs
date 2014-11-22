@@ -63,7 +63,15 @@ namespace Sites.Nurses.Manage_windows
 
         private void btnCSV_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                frmExport frmExp = new frmExport();
+                frmExp.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         /// <summary>

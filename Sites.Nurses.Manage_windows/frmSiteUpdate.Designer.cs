@@ -38,7 +38,7 @@
             // btnConfirm
             // 
             this.btnConfirm.Location = new System.Drawing.Point(68, 199);
-            this.btnConfirm.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.btnConfirm.Margin = new System.Windows.Forms.Padding(5);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Size = new System.Drawing.Size(79, 38);
             this.btnConfirm.TabIndex = 0;
@@ -49,7 +49,7 @@
             // btnCancel
             // 
             this.btnCancel.Location = new System.Drawing.Point(193, 199);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(5);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(79, 38);
             this.btnCancel.TabIndex = 1;
@@ -82,6 +82,7 @@
             this.txtSiteID.Size = new System.Drawing.Size(164, 29);
             this.txtSiteID.TabIndex = 27;
             this.txtSiteID.Text = "編號";
+            this.txtSiteID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSiteID_KeyPress);
             // 
             // frmSiteUpdate
             // 
@@ -95,7 +96,7 @@
             this.Controls.Add(this.btnConfirm);
             this.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "frmSiteUpdate";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;

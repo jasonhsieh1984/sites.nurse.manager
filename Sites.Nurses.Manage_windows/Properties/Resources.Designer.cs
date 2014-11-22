@@ -61,6 +61,36 @@ namespace Sites.Nurses.Manage_windows.Properties {
         }
         
         /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
+        internal static System.Drawing.Bitmap Alarm_Arrow_Left_icon {
+            get {
+                object obj = ResourceManager.GetObject("Alarm_Arrow_Left_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
+        internal static System.Drawing.Bitmap Alarm_Arrow_Right_icon {
+            get {
+                object obj = ResourceManager.GetObject("Alarm_Arrow_Right_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 (圖示) 的類型 System.Drawing.Icon 當地語系化資源。
+        /// </summary>
+        internal static System.Drawing.Icon ico_csv {
+            get {
+                object obj = ResourceManager.GetObject("ico_csv", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   查詢類似 (圖示) 的類型 System.Drawing.Icon 當地語系化資源。
         /// </summary>
         internal static System.Drawing.Icon ico_main {
@@ -76,6 +106,16 @@ namespace Sites.Nurses.Manage_windows.Properties {
         internal static System.Drawing.Icon ico_nurses {
             get {
                 object obj = ResourceManager.GetObject("ico_nurses", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 (圖示) 的類型 System.Drawing.Icon 當地語系化資源。
+        /// </summary>
+        internal static System.Drawing.Icon ico_site {
+            get {
+                object obj = ResourceManager.GetObject("ico_site", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }

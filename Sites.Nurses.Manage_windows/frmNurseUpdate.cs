@@ -6,11 +6,14 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.IO;
 
 namespace Sites.Nurses.Manage_windows
 {
     public partial class frmNurseUpdate : Form
     {
+        private string imagePath = Application.StartupPath + "\\image\\";
+
         private frmNurseManage nmform = null;
         public frmNurseManage NMForm
         {
@@ -34,6 +37,7 @@ namespace Sites.Nurses.Manage_windows
 
         private void frmNurseUpdate_Load(object sender, EventArgs e)
         {
+            CenterToParent();
             if (editData.ID == null)
                 return;
 
@@ -41,7 +45,8 @@ namespace Sites.Nurses.Manage_windows
             txtNurseID.ReadOnly = true;
             txtNurseID.Text = editData.ID;
             txtNurseName.Text = editData.Name;
-            //txtSiteMemo.Text = editData.Memo;
+            if (File.Exists(imagePath + editData.Image))
+                picNurse.Load(imagePath + editData.Image);
         }
 
         private void btnConfirm_Click(object sender, EventArgs e)
@@ -53,20 +58,21 @@ namespace Sites.Nurses.Manage_windows
                 return;
 
             clsNurse data = new clsNurse();
-            data.ID = txtNurseID.Text;
-            data.Name = txtNurseName.Text;
-            data.Image = "";
+            editData.ID = txtNurseID.Text;
+            editData.Name = txtNurseName.Text;
+            if (editData.Image == null)
+                editData.Image = "";
 
             if (bEdit)
             {
-                if (nmform.updateNurse(data) == 0)
+                if (nmform.updateNurse(editData) == 0)
                 {
                     Close();
                 }
             }
             else
             {
-                if (nmform.addNurse(data) == 0)
+                if (nmform.addNurse(editData) == 0)
                 {
                     Close();
                 }
@@ -86,6 +92,13 @@ namespace Sites.Nurses.Manage_windows
                 MessageBox.Show(msg);
                 return -1;
             }
+
+            if (txtNurseID.Text == "" || txtNurseName.Text == "")
+            {
+                string msg = "格式有誤，請重新確認.\r\n" + "ID與名稱皆不可空白";
+                MessageBox.Show(msg);
+                return -1;
+            }
             return 0;
         }
 
@@ -93,20 +106,49 @@ namespace Sites.Nurses.Manage_windows
         {
             try
             {
+                picNurse.Image = null;
+                Application.DoEvents();
+
                 OpenFileDialog ofd = new System.Windows.Forms.OpenFileDialog();
                 ofd.FileName = "選擇圖片";
                 ofd.Filter = "圖片檔|*.jpg;*.png;*.bmp;*.jpeg";
 
                 if (ofd.ShowDialog() == DialogResult.Cancel)
                     return;
+                                
+                if (bEdit)
+                {
+                    string previousPath = editData.Image;
+                    string tmpFileName = DateTime.Now.Ticks.ToString();
+                    File.Copy(ofd.FileName, imagePath + tmpFileName + Path.GetExtension(ofd.FileName));
+                    editData.Image = tmpFileName + Path.GetExtension(ofd.FileName);
 
+                    picNurse.Load(imagePath + editData.Image);
 
+                    //if (File.Exists(imagePath + previousPath))
+                        //File.Delete(imagePath + previousPath);                    
+                }
+                else
+                {
+                    string tmpFileName = DateTime.Now.Ticks.ToString();
+                    File.Copy(ofd.FileName, imagePath + tmpFileName + Path.GetExtension(ofd.FileName));
+                    editData.Image = tmpFileName + Path.GetExtension(ofd.FileName);
+                    picNurse.Load(imagePath + editData.Image);
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
 
+        }
+
+        private void txtNurseID_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+            if (((e.KeyChar >= '0' && e.KeyChar <= '9') || (e.KeyChar >= 'A' && e.KeyChar <= 'Z') || (e.KeyChar >= 'a' && e.KeyChar <= 'z')) ||
+                (e.KeyChar == (char)Keys.Back) || (e.KeyChar == (char)Keys.Delete) || (e.KeyChar == '-'))
+                e.Handled = false;
         }
     }
 }

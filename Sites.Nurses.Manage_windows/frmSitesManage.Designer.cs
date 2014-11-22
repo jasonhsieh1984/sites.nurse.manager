@@ -28,15 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSitesManage));
             this.label1 = new System.Windows.Forms.Label();
             this.dgvSite = new System.Windows.Forms.DataGridView();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvAssigned = new System.Windows.Forms.DataGridView();
             this.txtNurseID = new System.Windows.Forms.TextBox();
             this.txtNurseName = new System.Windows.Forms.TextBox();
             this.picNurse = new System.Windows.Forms.PictureBox();
@@ -44,8 +42,12 @@
             this.txtSiteName = new System.Windows.Forms.TextBox();
             this.txtSiteMemo = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cmbSite = new System.Windows.Forms.ComboBox();
+            this.txtSiteSearch = new System.Windows.Forms.TextBox();
+            this.btnSiteSearch = new System.Windows.Forms.Button();
+            this.btnShowAllSite = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSite)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAssigned)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picNurse)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -64,7 +66,7 @@
             this.dgvSite.AllowUserToAddRows = false;
             this.dgvSite.AllowUserToDeleteRows = false;
             this.dgvSite.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvSite.Location = new System.Drawing.Point(7, 32);
+            this.dgvSite.Location = new System.Drawing.Point(7, 75);
             this.dgvSite.MultiSelect = false;
             this.dgvSite.Name = "dgvSite";
             this.dgvSite.ReadOnly = true;
@@ -76,7 +78,7 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(258, 321);
+            this.btnDelete.Location = new System.Drawing.Point(258, 364);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(90, 40);
             this.btnDelete.TabIndex = 17;
@@ -86,7 +88,7 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(7, 322);
+            this.btnAdd.Location = new System.Drawing.Point(7, 365);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(90, 40);
             this.btnAdd.TabIndex = 15;
@@ -96,7 +98,7 @@
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(130, 322);
+            this.btnUpdate.Location = new System.Drawing.Point(130, 365);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(90, 40);
             this.btnUpdate.TabIndex = 16;
@@ -104,36 +106,20 @@
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
-            // dataGridView1
+            // dgvAssigned
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3});
-            this.dataGridView1.Location = new System.Drawing.Point(6, 26);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(245, 295);
-            this.dataGridView1.TabIndex = 20;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "編號";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "名稱";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "照片路徑";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.Visible = false;
+            this.dgvAssigned.AllowUserToAddRows = false;
+            this.dgvAssigned.AllowUserToDeleteRows = false;
+            this.dgvAssigned.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvAssigned.Location = new System.Drawing.Point(6, 26);
+            this.dgvAssigned.MultiSelect = false;
+            this.dgvAssigned.Name = "dgvAssigned";
+            this.dgvAssigned.ReadOnly = true;
+            this.dgvAssigned.RowTemplate.Height = 24;
+            this.dgvAssigned.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvAssigned.Size = new System.Drawing.Size(245, 295);
+            this.dgvAssigned.TabIndex = 20;
+            this.dgvAssigned.SelectionChanged += new System.EventHandler(this.dgvAssigned_SelectionChanged);
             // 
             // txtNurseID
             // 
@@ -159,12 +145,13 @@
             this.picNurse.Location = new System.Drawing.Point(257, 165);
             this.picNurse.Name = "picNurse";
             this.picNurse.Size = new System.Drawing.Size(132, 156);
+            this.picNurse.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picNurse.TabIndex = 23;
             this.picNurse.TabStop = false;
             // 
             // txtSiteID
             // 
-            this.txtSiteID.Location = new System.Drawing.Point(7, 191);
+            this.txtSiteID.Location = new System.Drawing.Point(7, 234);
             this.txtSiteID.Name = "txtSiteID";
             this.txtSiteID.ReadOnly = true;
             this.txtSiteID.Size = new System.Drawing.Size(164, 29);
@@ -173,7 +160,7 @@
             // 
             // txtSiteName
             // 
-            this.txtSiteName.Location = new System.Drawing.Point(177, 191);
+            this.txtSiteName.Location = new System.Drawing.Point(177, 234);
             this.txtSiteName.Name = "txtSiteName";
             this.txtSiteName.ReadOnly = true;
             this.txtSiteName.Size = new System.Drawing.Size(171, 29);
@@ -182,7 +169,7 @@
             // 
             // txtSiteMemo
             // 
-            this.txtSiteMemo.Location = new System.Drawing.Point(7, 226);
+            this.txtSiteMemo.Location = new System.Drawing.Point(7, 269);
             this.txtSiteMemo.Multiline = true;
             this.txtSiteMemo.Name = "txtSiteMemo";
             this.txtSiteMemo.ReadOnly = true;
@@ -193,22 +180,62 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.dataGridView1);
+            this.groupBox1.Controls.Add(this.dgvAssigned);
             this.groupBox1.Controls.Add(this.txtNurseID);
             this.groupBox1.Controls.Add(this.txtNurseName);
             this.groupBox1.Controls.Add(this.picNurse);
-            this.groupBox1.Location = new System.Drawing.Point(363, 32);
+            this.groupBox1.Location = new System.Drawing.Point(367, 60);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(396, 329);
             this.groupBox1.TabIndex = 27;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "護士資訊";
             // 
+            // cmbSite
+            // 
+            this.cmbSite.FormattingEnabled = true;
+            this.cmbSite.Location = new System.Drawing.Point(30, 41);
+            this.cmbSite.Name = "cmbSite";
+            this.cmbSite.Size = new System.Drawing.Size(68, 28);
+            this.cmbSite.TabIndex = 28;
+            this.cmbSite.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbSite_KeyPress);
+            // 
+            // txtSiteSearch
+            // 
+            this.txtSiteSearch.Location = new System.Drawing.Point(104, 41);
+            this.txtSiteSearch.Name = "txtSiteSearch";
+            this.txtSiteSearch.Size = new System.Drawing.Size(90, 29);
+            this.txtSiteSearch.TabIndex = 29;
+            // 
+            // btnSiteSearch
+            // 
+            this.btnSiteSearch.Location = new System.Drawing.Point(200, 40);
+            this.btnSiteSearch.Name = "btnSiteSearch";
+            this.btnSiteSearch.Size = new System.Drawing.Size(60, 29);
+            this.btnSiteSearch.TabIndex = 30;
+            this.btnSiteSearch.Text = "搜尋";
+            this.btnSiteSearch.UseVisualStyleBackColor = true;
+            this.btnSiteSearch.Click += new System.EventHandler(this.btnSiteSearch_Click);
+            // 
+            // btnShowAllSite
+            // 
+            this.btnShowAllSite.Location = new System.Drawing.Point(266, 40);
+            this.btnShowAllSite.Name = "btnShowAllSite";
+            this.btnShowAllSite.Size = new System.Drawing.Size(82, 29);
+            this.btnShowAllSite.TabIndex = 31;
+            this.btnShowAllSite.Text = "所有資料";
+            this.btnShowAllSite.UseVisualStyleBackColor = true;
+            this.btnShowAllSite.Click += new System.EventHandler(this.btnShowAllSite_Click);
+            // 
             // frmSitesManage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(766, 368);
+            this.ClientSize = new System.Drawing.Size(766, 411);
+            this.Controls.Add(this.btnShowAllSite);
+            this.Controls.Add(this.btnSiteSearch);
+            this.Controls.Add(this.txtSiteSearch);
+            this.Controls.Add(this.cmbSite);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.txtSiteMemo);
             this.Controls.Add(this.txtSiteName);
@@ -220,6 +247,7 @@
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(5);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -229,7 +257,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmSitesManage_FormClosing);
             this.Load += new System.EventHandler(this.frmSitesManage_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvSite)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAssigned)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picNurse)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -245,10 +273,7 @@
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnUpdate;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridView dgvAssigned;
         private System.Windows.Forms.TextBox txtNurseID;
         private System.Windows.Forms.TextBox txtNurseName;
         private System.Windows.Forms.PictureBox picNurse;
@@ -256,5 +281,9 @@
         private System.Windows.Forms.TextBox txtSiteName;
         private System.Windows.Forms.TextBox txtSiteMemo;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.ComboBox cmbSite;
+        private System.Windows.Forms.TextBox txtSiteSearch;
+        private System.Windows.Forms.Button btnSiteSearch;
+        private System.Windows.Forms.Button btnShowAllSite;
     }
 }

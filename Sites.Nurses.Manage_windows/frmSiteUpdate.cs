@@ -34,6 +34,7 @@ namespace Sites.Nurses.Manage_windows
 
         private void frmSiteUpdate_Load(object sender, EventArgs e)
         {
+            CenterToParent();
             if (editData.ID == null)
                 return;
 
@@ -86,7 +87,22 @@ namespace Sites.Nurses.Manage_windows
                 MessageBox.Show(msg);
                 return -1;
             }
+
+            if (txtSiteID.Text=="" || txtSiteName.Text=="")
+            {
+                string msg = "格式有誤，請重新確認.\r\n" + "ID與名稱皆不可空白";
+                MessageBox.Show(msg);
+                return -1;
+            }
             return 0;
+        }
+
+        private void txtSiteID_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+            if (((e.KeyChar >= '0' && e.KeyChar <= '9') || (e.KeyChar >= 'A' && e.KeyChar <= 'Z') || (e.KeyChar >= 'a' && e.KeyChar <= 'z')) ||
+                (e.KeyChar == (char)Keys.Back) || (e.KeyChar == (char)Keys.Delete) || (e.KeyChar == '-'))
+                e.Handled = false;
         }
     }
 }
